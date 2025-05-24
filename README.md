@@ -16,5 +16,46 @@
 
 ---
 
-## 🚀 Upgrade to Pro for Advan
+## 🚀 Upgrade to Pro for Advanced Features
+
+🔒 Unlimited campaigns  
+🔒 Advanced scheduling options (recurring, time windows, randomization)  
+🔒 Custom per-post text  
+🔒 Analytics dashboard  
+🔒 Team permissions  
+🔒 Native Buffer, Hootsuite, and Zapier integrations  
+🔒 Priority support
+
+🌸 Coming Soon: [Link to your Pro version or website]
+
+---
+
+## 📦 Installation
+
+1. Download the plugin ZIP.
+2. In your WordPress dashboard, go to **Plugins > Add New > Upload Plugin**.
+3. Upload the ZIP file and click **Install Now**.
+4. Activate the plugin.
+5. Create and manage campaigns from the **ReShare Campaigns** menu.
+
+---
+
+## 🧑‍💻 Contributing
+
+Contributions are welcome! Please submit a pull request or open an issue.
+
+---
+
+## 📝 License
+
+This plugin is licensed under the [GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html).
+
+---
+
+## 🌐 Author
+
+Created by Luis Ayuso  
+[GitHub](https://github.com/layuso)
+
+---
 
