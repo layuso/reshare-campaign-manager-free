@@ -8,15 +8,14 @@ $title = $editing ? esc_attr($campaign['title']) : '';
 $post_ids = $editing ? (array) $campaign['post_ids'] : [];
 $global_prepend = $editing ? get_post_meta($campaign_id, '_rcm_global_prepend_text', true) : '';
 $frequency = $editing ? esc_attr(get_post_meta($campaign_id, '_rcm_frequency', true)) : '+1 day';
-
 ?>
 
 <div class="wrap">
     <h1><?php echo $editing ? esc_html__('Edit Campaign', 'reshare-campaign-manager') : esc_html__('Add New Campaign', 'reshare-campaign-manager'); ?></h1>
 
     <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
-        <?php wp_nonce_field('rcm_save_campaign', 'rcm_nonce'); ?>
         <input type="hidden" name="action" value="rcm_save_campaign">
+        <?php wp_nonce_field('rcm_save_campaign', 'rcm_nonce'); ?>
         <?php if ($editing): ?>
             <input type="hidden" name="campaign_id" value="<?php echo $campaign_id; ?>">
         <?php endif; ?>
