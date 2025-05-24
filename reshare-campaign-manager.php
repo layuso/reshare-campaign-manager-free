@@ -3,7 +3,8 @@
 Plugin Name: ReShare Campaign Manager
 Description: Create and manage social media resharing campaigns using previously published blog posts.
 Version: 1.0.0
-Author: Your Name
+Author: Luis Ayuso
+Author URI: https://lotuslinktech.com
 Text Domain: reshare-campaign-manager
 Domain Path: /languages
 */
