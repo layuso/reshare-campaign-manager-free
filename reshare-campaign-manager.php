@@ -33,3 +33,25 @@ function rcm_init_plugin() {
 }
 add_action('plugins_loaded', 'rcm_init_plugin');
 
+// 🧩 Activation Hook to Create Table
+register_activation_hook(__FILE__, 'rcm_activate_plugin');
+
+function rcm_activate_plugin() {
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'rcm_campaigns';
+    $charset_collate = $wpdb->get_charset_collate();
+
+    $sql = "CREATE TABLE $table_name (
+        id mediumint(9) NOT NULL AUTO_INCREMENT,
+        name text NOT NULL,
+        status varchar(20) DEFAULT 'Pending' NOT NULL,
+        date_scheduled datetime DEFAULT NULL,
+        expected_finish_date datetime DEFAULT NULL,
+        created_by bigint(20) NOT NULL,
+        PRIMARY KEY  (id)
+    ) $charset_collate;";
+
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+    dbDelta($sql);
+}
+
