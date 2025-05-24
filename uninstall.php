@@ -24,5 +24,10 @@ $wpdb->query("
     WHERE p.ID IS NULL
 ");
 
+// Drop the custom campaigns table
+$table_name = $wpdb->prefix . 'rcm_campaigns';
+$wpdb->query("DROP TABLE IF EXISTS {$table_name}");
+
 // (Optional) Remove plugin options or transients here if added in future
+// delete_option('reshare_campaign_manager_settings'); // Example placeholder
 
