@@ -93,10 +93,20 @@ class Plugin {
             RESHARE_VERSION
         );
 
+        // Enqueue wizard step components
+        wp_enqueue_script(
+            'reshare-wizard-steps',
+            RESHARE_PLUGIN_URL . 'assets/js/components/wizard-steps.js',
+            ['wp-element', 'wp-components', 'wp-api-fetch'],
+            RESHARE_VERSION,
+            true
+        );
+
+        // Enqueue main admin script
         wp_enqueue_script(
             'reshare-admin-script',
             RESHARE_PLUGIN_URL . 'assets/js/admin.js',
-            ['wp-element', 'wp-components', 'wp-api-fetch'],
+            ['wp-element', 'wp-components', 'wp-api-fetch', 'reshare-wizard-steps'],
             RESHARE_VERSION,
             true
         );
@@ -105,6 +115,8 @@ class Plugin {
             'ajaxUrl' => admin_url('admin-ajax.php'),
             'nonce' => wp_create_nonce('reshare-admin'),
             'isPro' => $this->is_pro_version(),
+            'restNonce' => wp_create_nonce('wp_rest'),
+            'restUrl' => get_rest_url(null, 'wp/v2/reshare')
         ]);
     }
 
@@ -175,9 +187,13 @@ class Plugin {
     }
 
     /**
-     * Process scheduled campaign posts
+     * Process campaign posts
      */
-    public function process_campaign_posts($campaign_id) {
-        // Implementation will be added in Campaign class
+    public function process_campaign_posts($args) {
+        if (!isset($args['campaign_id'])) {
+            return;
+        }
+
+        Campaign::process_post($args['campaign_id'], $args['post_id']);
     }
 } 

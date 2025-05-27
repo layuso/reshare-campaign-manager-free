@@ -56,6 +56,9 @@ function reshare_init() {
     
     // Initialize core plugin class
     \ReShare\Core\Plugin::get_instance();
+
+    // Register REST API endpoints
+    add_action('rest_api_init', ['\ReShare\API\REST', 'register_routes']);
 }
 add_action('plugins_loaded', 'reshare_init');
 
