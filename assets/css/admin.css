@@ -31,18 +31,109 @@
 }
 
 .reshare-post-list {
+    max-height: 300px;
+    overflow-y: auto;
     margin: 20px 0;
+    border: 1px solid #ddd;
+    padding: 10px;
 }
 
-.reshare-post-list .post-item {
+.post-item {
     padding: 10px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.post-item:last-child {
+    border-bottom: none;
+}
+
+.post-item h4 {
+    margin: 0 0 5px 0;
+}
+
+.post-item .excerpt {
+    margin: 0;
+    color: #666;
+    font-size: 13px;
+}
+
+.reshare-selected-posts {
+    margin-top: 20px;
+}
+
+.reshare-selected-posts ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.reshare-selected-posts li {
+    cursor: move;
+    background: #fff;
+    padding: 8px;
+    margin-bottom: 5px;
     border: 1px solid #ddd;
-    margin-bottom: 10px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.reshare-selected-posts li:hover {
     background: #f9f9f9;
 }
 
-.reshare-post-list .post-item:hover {
-    background: #fff;
+.reshare-selected-posts .post-title {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.reshare-selected-posts .remove-post {
+    color: #dc3232;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 18px;
+}
+
+.reshare-frequency-settings label {
+    display: block;
+    margin: 10px 0;
+}
+
+.reshare-campaign-summary {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+.reshare-search-filters {
+    margin-bottom: 20px;
+}
+
+.reshare-search-row {
+    margin-bottom: 10px;
+}
+
+.reshare-search-row input {
+    width: 100%;
+    padding: 8px;
+}
+
+.reshare-filter-row {
+    display: flex;
+    gap: 10px;
+}
+
+.sort-placeholder {
+    border: 1px dashed #999;
+    background: #f7f7f7;
+    height: 36px;
+    margin-bottom: 5px;
 }
 
 .reshare-campaign-table {
@@ -87,24 +178,260 @@
     color: #fff;
 }
 
-.reshare-modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: #fff;
-    padding: 20px;
-    border: 1px solid #ccd0d4;
-    box-shadow: 0 5px 15px rgba(0,0,0,.3);
-    z-index: 160000;
-}
-
-.reshare-modal-backdrop {
+.reshare-modal-wrapper {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0,0,0,.7);
-    z-index: 159999;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 159900;
+}
+
+.reshare-modal {
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    margin: 30px auto;
+    background: #fff;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+    z-index: 159901;
+}
+
+.reshare-modal-content {
+    padding: 20px;
+}
+
+.reshare-modal-header {
+    position: sticky;
+    top: 0;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    background: #fcfcfc;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    z-index: 1;
+}
+
+.reshare-modal-header h2 {
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.4;
+}
+
+.reshare-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    color: #666;
+    padding: 0;
+    cursor: pointer;
+    background: 0 0;
+    border: 0;
+    width: 36px;
+    height: 36px;
+    font-size: 24px;
+    line-height: 36px;
+    text-align: center;
+}
+
+.reshare-modal-close:hover {
+    color: #00a0d2;
+}
+
+.reshare-modal-body {
+    padding: 15px;
+    min-height: 200px;
+}
+
+.reshare-modal-footer {
+    position: sticky;
+    bottom: 0;
+    padding: 15px;
+    border-top: 1px solid #ddd;
+    background: #fcfcfc;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    z-index: 1;
+}
+
+.reshare-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #666;
+}
+
+.reshare-loading .spinner {
+    float: none;
+    margin: 0 auto 10px;
+    visibility: visible;
+}
+
+.reshare-loading p {
+    margin: 0;
+}
+
+/* Ensure modal appears above WP admin bar */
+#wpadminbar {
+    z-index: 159899;
+}
+
+/* Form Styles */
+.reshare-search-box {
+    margin-bottom: 15px;
+}
+
+.reshare-filters {
+    margin: 10px 0;
+}
+
+.reshare-results-wrapper {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 782px) {
+    .reshare-results-wrapper {
+        grid-template-columns: 1fr;
+    }
+    
+    .reshare-modal {
+        width: 95%;
+        max-height: 95vh;
+    }
+}
+
+/* Wizard specific styles */
+.wizard-step {
+    display: none;
+}
+
+.wizard-step.active {
+    display: block;
+}
+
+/* Modal styles */
+.modal-open {
+    overflow: hidden;
+}
+
+/* Datepicker fixes */
+#ui-datepicker-div {
+    background-color: #fff !important;
+    border: 1px solid #ddd !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+    z-index: 160000 !important;
+}
+
+.ui-datepicker {
+    padding: 10px;
+    width: auto;
+    background: #fff;
+}
+
+.ui-datepicker table {
+    border-collapse: collapse;
+    margin: 0;
+    width: 100%;
+}
+
+.ui-datepicker td {
+    border: 1px solid #ddd;
+    padding: 0;
+}
+
+.ui-datepicker td span, 
+.ui-datepicker td a {
+    display: block;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    background: #fff !important;
+    color: #333 !important;
+}
+
+.ui-datepicker td a:hover {
+    background: #f0f0f0 !important;
+}
+
+.ui-datepicker .ui-datepicker-header {
+    background: #f7f7f7;
+    border: 1px solid #ddd;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.ui-datepicker .ui-datepicker-prev,
+.ui-datepicker .ui-datepicker-next {
+    position: absolute;
+    top: 5px;
+    width: 20px;
+    height: 20px;
+    text-indent: -9999px;
+    cursor: pointer;
+}
+
+.ui-datepicker .ui-datepicker-prev {
+    left: 5px;
+}
+
+.ui-datepicker .ui-datepicker-next {
+    right: 5px;
+}
+
+/* Social accounts list */
+.social-account-item {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.social-account-item:last-child {
+    border-bottom: none;
+}
+
+/* Posts list */
+.selected-posts-list {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.selected-posts-list tr {
+    border-bottom: 1px solid #eee;
+}
+
+.selected-posts-list td {
+    padding: 10px;
+}
+
+.column-handle {
+    width: 30px;
+    cursor: move;
+}
+
+.column-remove {
+    width: 30px;
+    text-align: right;
+}
+
+.button-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Navigation buttons */
+.wizard-navigation {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    text-align: right;
+}
+
+.wizard-navigation button {
+    margin-left: 10px;
 } 
